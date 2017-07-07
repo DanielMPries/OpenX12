@@ -15,6 +15,17 @@
     <DefineConstants>NET_4_5</DefineConstants>
   </PropertyGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+  </ItemGroup>
+
   <!-- Assembly Info -->
   <PropertyGroup>
     <Version>0.1.0</Version>

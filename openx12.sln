@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "openx12", "openx12\openx12.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "openx12.tests", "openx12.tests\openx12.tests.csproj", "{3CD7EBD9-2219-4CE7-A9B6-97D2566F1D3B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{302EC504-61C8-4942-9D7B-A3B00CA812F3}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -15,6 +15,26 @@ namespace openx12.Models.Interchange {
         private ICodeMapper<AcknowledgementRequestedType>  _AcknowledgementRequestedTypeMapper;
         private ICodeMapper<InterchangeUsageIndicatorType> _InterchangeUsageIndicatorTypeMapper;
 
+        /// <summary>Regex pattern of an ISA Header Segment.  The ISA is the only fixed format segment in the x12 specification.</summary>
+        /// <remarks>
+        /// Regex Rules:
+        ///     Starts with "ISA"                               SEGMENT NAME
+        ///     Followed by 67 characters of any type           AUTHOR, SECURITY, SENDER, RECIEVER ELEMENTS
+        ///     Followed by 6 digits                            INTERCHANGE DATE
+        ///     Followed by 1 character of any type             CONTROL CHARACTER
+        ///     Followed by 4 digits                            INTERCHANGE TIME
+        ///     Followed by 3 characters of any type            CONTROL CHARACTER + INTERCHANGE CONTROL STANDARD ID + CONTROL CHARACTER
+        ///     Followed by 5 digits                            INTERCHANGE CONTROL VERSION NUMBER
+        ///     Followed by 1 character of any type             CONTROL CHARACTER
+        ///     Followed by 9 digits                            INTERCHANGE CONTROL NUMBER
+        ///     Followed by 1 character of any type             CONTROL CHARACTER
+        ///     Followed by 1 digit that must be 0 or 1         BOOLEAN ACKNOWLEDGEMENT REQUESTED
+        ///     Followed by 1 character of any type             CONTROL CHARACTER
+        ///     Followed by 1 character that must be a P or T   USAGE INDICATOR
+        ///     Followed by 3 characters of any type            CONTROL CHARACTERS
+        /// </remarks>
+        public const string HeaderRegexPattern = @"(ISA)(.{67})(\d{6})(.{1})(\d{4})(.{3})(\d{5})(.{1})(\d{9})(.{1})([0|1]{1})(.{1})([P|T]{1})(.{3})";
+
 
         public const string ElementName = "ISA";
         private const int _ElementCount = 16;

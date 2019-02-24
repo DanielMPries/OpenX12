@@ -2,7 +2,7 @@
 X12 Document Parser
 
 
-### Why (also orgins, also soapbox...)
+### Why (also origins, also soapbox...)
 The OpenX12 project was originally developed between 2005-2006 as a quick way to process an X12 document.  At that time, most EDI tools were black box applications with complex intergration points and limited or no debugging capability.  When dealing with mission critial data, the development tool chain should provide full confidence that integration points are working as intended.  In addition, the mapping software is complex abstration of technology at business level, not a technology level.  Consequently, decisions for endpoints are made around user comfort which at that level which often means using legacy endpoints like flat files and relational databases.  These decisions typically compromise on speed of I/O or data compromises to reduce file sizes.  All of that leads to increased operational and infrastucture costs plus additional costs due to licensing and increased specialization.
 
 ### Why the reboot?

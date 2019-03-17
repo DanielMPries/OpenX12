@@ -10,7 +10,8 @@ namespace openx12.tests
     {
         [TestMethod, TestCategory("Unit")]
         public void should_read_sample_997() {
-            var doc = X12Document.Read(@".\TestData\Sample997.txt");
+            var path = System.IO.Path.Combine(".","TestData","Sample997.txt");
+            var doc = X12Document.Read(path);
             doc.Interchanges.Should().HaveCount(1);
         }
     }

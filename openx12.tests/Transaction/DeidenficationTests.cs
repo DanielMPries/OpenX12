@@ -25,16 +25,16 @@ namespace openx12.tests.Transaction
                     .TransactionSets.First();
         }
 
-        
+
         [TestMethod, TestCategory("Unit")]
-        public void should_parse_transaction() {    
+        public void should_parse_transaction() {
             var sub = _Transaction.Segments
                 .SingleOrDefault( x => x.Name == "NM1" && x.Qualifier == "IL");
             sub.Elements[2].Value.Should().Be("JOHN DOE");
         }
 
         [TestMethod, TestCategory("Unit")]
-        public void should_deidentify_name() {    
+        public void should_deidentify_name() {
             var sub = _Transaction.Segments
                 .SingleOrDefault( x => x.Name == "NM1" && x.Qualifier == "IL");
             sub.Elements[2].Value = "XXXX XXX";

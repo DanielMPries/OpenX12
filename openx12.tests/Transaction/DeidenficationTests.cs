@@ -38,7 +38,8 @@ namespace openx12.tests.Transaction
             var sub = _Transaction.Segments
                 .SingleOrDefault( x => x.Name == "NM1" && x.Qualifier == "IL");
             sub.Elements[2].Value = "XXXX XXX";
-            System.IO.File.WriteAllText("output.txt", _Transaction.ToString());
+            //System.IO.File.WriteAllText("output.txt", _Transaction.ToString());
+            _Transaction.ToString().Should().Contain("NM1*IL*1*XXXX XXX");
         }
     }
 }

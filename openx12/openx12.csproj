@@ -1,35 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- Target Frameworks -->
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;net40;net45;net46</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   
-  <!-- Framework target constants -->
-  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
-    <DefineConstants>NET_STANDARD</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
-    <DefineConstants>NET_4_6</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
-    <DefineConstants>NET_4_5</DefineConstants>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-  </ItemGroup>
-
-  <!-- Assembly Info -->
+    <!-- Assembly Info -->
   <PropertyGroup>
-    <Version>0.1.0</Version>
-    <FileVersion>0.1.0</FileVersion>
+    <Version>0.2.0</Version>
+    <FileVersion>0.2.0</FileVersion>
     <Authors>Daniel Pries</Authors>
     <Description>X12 Document parser</Description>
     <Copyright>Copyright (c) 2017 Daniel Pries</Copyright>
@@ -38,7 +16,7 @@
   <!-- NuGet Settings -->
   <PropertyGroup>
     <PackageId>OpenX12</PackageId>
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>0.2.0</PackageVersion>
     <Authors>Daniel Pries</Authors>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>X12 Document parser</PackageTags>

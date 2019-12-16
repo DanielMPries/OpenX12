@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using openx12.Utilities;
 using openx12.Models.Exceptions;
+using System.Diagnostics;
 
 namespace openx12.Models {
+    [DebuggerDisplay("[{Index.Loop}|{Index.LoopIteration}] {Value}")]
     public class Segment {
+        public DataElementIndex.DataIndex Index { get; set; } = new DataElementIndex.DataIndex();
         /// <summary>
         /// Gets/Sets the formatting options for the Segment
         /// </summary>

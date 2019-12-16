@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>    
-    <TargetFramework>net46</TargetFramework>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\openx12\openx12.csproj" />
+    <ProjectReference Include="..\openx12.documents\openx12.documents.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +24,9 @@
 
   <ItemGroup>
     <None Update="TestData\Sample997.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\834.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

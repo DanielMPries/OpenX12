@@ -10,16 +10,23 @@ namespace openx12.Models.Interchange
     {
         public const string ElementName = "IEA";
 
+        public const string TrailerRegexPattern = @"(IEA)(.{1})(\d{1,5})(.{1})(\d{9})(.{1})";
+
         /// <summary>
         /// Number of Included Functional Groups
         /// A count of the number of functional groups included in an interchange
         /// </summary>
-        public int IncludedFunctionalGroups {
+        public int IncludedFunctionalGroups
+        {
             get => (Elements.Count >= 1) ? int.Parse(Elements[0].Value) : 0;
-            set {
-                if (Elements.Count >= 1) {
+            set
+            {
+                if (Elements.Count >= 1)
+                {
                     Elements[0].Value = value.ToString();
-                } else {
+                }
+                else
+                {
                     Elements.Add(new Element(value.ToString()));
                 }
             }
@@ -29,19 +36,25 @@ namespace openx12.Models.Interchange
         /// Interchange Control Number
         /// A control number assigned by the interchange sender
         /// </summary>
-        public string InterchangeControlNumber {
+        public string InterchangeControlNumber
+        {
             get => (Elements.Count >= 2) ? Elements[1].Value : string.Empty;
-            set {
-                if (Elements.Count.Equals(1)) {
+            set
+            {
+                if (Elements.Count.Equals(1))
+                {
                     Elements.Add(new Element(value));
-                } else if (Elements.Count >= 2) {
+                }
+                else if (Elements.Count >= 2)
+                {
                     Elements[1].Value = value;
                 }
             }
         }
 
         /// <summary>Constructor</summary>
-        public InterchangeControlTrailer() {
+        public InterchangeControlTrailer()
+        {
             Name = ElementName;
         }
 

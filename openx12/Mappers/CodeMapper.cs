@@ -6,14 +6,17 @@ using System.Linq;
 using System.Reflection;
 using openx12.Attributes;
 
-namespace openx12.Mappers {
-    public class CodeMapper<T> : ICodeMapper<T> where T : struct, IConvertible {
+namespace openx12.Mappers
+{
+    public class CodeMapper<T> : ICodeMapper<T> where T : struct, IConvertible
+    {
         private static readonly HashSet<KeyValuePair<T, string>> _ValuePairs = new HashSet<KeyValuePair<T, string>>();
 
         /// <summary>Returns the code associated with the enumerable value</summary>
         /// <param name="value">The enumerable value</param>
         /// <returns></returns>
-        public string Map(T value) {
+        public string Map(T value)
+        {
             return _ValuePairs
                 .Where(v => v.Key.Equals(value))
                 .Select(v => v.Value)
@@ -23,7 +26,8 @@ namespace openx12.Mappers {
         /// <summary>Returns the enumerable value associated with the code</summary>
         /// <param name="code">The code</param>
         /// <returns></returns>
-        public T Map(string code) {
+        public T Map(string code)
+        {
             return _ValuePairs
                 .Where(v => v.Value.Equals(code))
                 .Select(v => v.Key)
@@ -33,29 +37,36 @@ namespace openx12.Mappers {
         /// <summary>Returns a nullable enumerable value associated with the code</summary>
         /// <param name="code">The code</param>
         /// <returns></returns>
-        public T? MapNullable(string code) {
-            if (!_ValuePairs.Where(v => v.Value.Equals(code)).Select(v => v.Key).Any()) {
+        public T? MapNullable(string code)
+        {
+            if (!_ValuePairs.Where(v => v.Value.Equals(code)).Select(v => v.Key).Any())
+            {
                 return null;
             }
             return _ValuePairs.Where(v => v.Value.Equals(code)).Select(v => v.Key).Single();
         }
 
         /// <summary>Constructor</summary>
-        public CodeMapper() {
+        public CodeMapper()
+        {
             var enumType = typeof(T);
             Debug.Assert(IsOfEnumType(enumType), $"{enumType} must be an enumerated type");
 
-            if (_ValuePairs.Count > 0) {
+            if (_ValuePairs.Count > 0)
+            {
                 return;
             }
 
-            lock (_ValuePairs) {
-                if (_ValuePairs.Count > 0) {
+            lock (_ValuePairs)
+            {
+                if (_ValuePairs.Count > 0)
+                {
                     return;
                 }
 
                 string code;
-                foreach (T enumValue in Enum.GetValues(enumType)) {
+                foreach (T enumValue in Enum.GetValues(enumType))
+                {
                     code = GetCodeAttribute(enumType, enumValue.ToString(CultureInfo.InvariantCulture))?.Code;
 
                     Debug.Assert(!_ValuePairs.Any(v => v.Value.Equals(code) || v.Key.Equals(enumValue)));
@@ -68,16 +79,11 @@ namespace openx12.Mappers {
         /// <param name="type">The enum type</param>
         /// <param name="value">The enum value</param>
         /// <returns></returns>
-        private static CodeAttribute GetCodeAttribute(Type type, string value) {
-#if NET_STANDARD
+        private static CodeAttribute GetCodeAttribute(Type type, string value)
+        {
             return type.GetRuntimeField(value)
                        .GetCustomAttributes<CodeAttribute>(inherit: false)
                        .SingleOrDefault();
-#else
-            return type.GetField(value)
-                       .GetCustomAttributes(typeof(CodeAttribute), false)
-                       .Single() as CodeAttribute;
-#endif
         }
 
         /// <summary>
@@ -85,12 +91,9 @@ namespace openx12.Mappers {
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        private static bool IsOfEnumType(Type type) {
-#if NET_STANDARD
+        private static bool IsOfEnumType(Type type)
+        {
             return (type.GetTypeInfo().IsEnum);
-#else
-            return type.IsEnum;
-#endif
         }
     }
 }
